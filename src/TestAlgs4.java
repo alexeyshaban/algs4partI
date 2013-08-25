@@ -32,6 +32,6 @@ public class TestAlgs4 {
         StdDraw.filledCircle(0, 0, 0.6);
 
         // draw a picture of the textbook        
-        StdDraw.picture(0, 0, "cover.jpg", 0.65, 0.80);
+//        StdDraw.picture(0, 0, "cover.jpg", 0.65, 0.80);
     }
 }
