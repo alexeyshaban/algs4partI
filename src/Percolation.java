@@ -3,14 +3,17 @@ public class Percolation {
     private int N; // dimensions
     private int sites; // total number of sites
     private boolean[][] open;
-    private QuickFindUF uf;
+    private WeightedQuickUnionUF uf;
     
     /** create N-by-N grid, with all sites blocked */
     public Percolation(int N) {
-        this.N = assertPositive(N);
+        if (N <= 0) {
+            throw new IllegalArgumentException("out of bounds");
+        }
+        this.N = N;
         sites = N * N + 2 /* virtual nodes */;
         open = new boolean[N][N];
-        uf = new QuickFindUF(sites);
+        uf = new WeightedQuickUnionUF(sites);
         // connect virtual top site with the 1st row
         for (int i = 1; i <= N; i++) {
             uf.union(0, i);
@@ -72,17 +75,9 @@ public class Percolation {
         return uf.connected(0, sites - 1);
     }
 
-    static int assertPositive(int n) {
-        if (n <= 0) {
-            throw new IllegalArgumentException("out of bounds");
-        }
-        return n;
-    }
-    
-    static int assertInRange(int n, int lo, int hi) {
+    private static void assertInRange(int n, int lo, int hi) {
         if (lo > hi || n < lo || n > hi) {
             throw new IllegalArgumentException("out of bounds");
         }
-        return n;
     }
 }
