@@ -50,6 +50,15 @@ public class PercolationTest extends TestCase {
         assertTrue(p.isOpen(3, j));
         assertTrue(p.isFull(3, j));
         assertTrue(p.percolates());
+        
+        for (int i = 1; i <= 3; i++) {
+            for (int k = 1; k <= 3; k++) {
+                if (k == j) {
+                    continue;
+                }
+                assertFalse(p.isFull(i, k));
+            }
+        }
     }
     
     @Test
@@ -75,6 +84,31 @@ public class PercolationTest extends TestCase {
         assertFalse(p.percolates());
         p.open(4, 4);
         assertTrue(p.isFull(4, 4));
+        assertFalse(p.isFull(3, 1));
+        assertFalse(p.isFull(4, 1));
+        assertTrue(p.percolates());
+    }
+    
+    @Test
+    public void test1x1() throws Exception {
+        Percolation p = new Percolation(1);
+        assertFalse(p.isOpen(1, 1));
+        assertFalse(p.isFull(1, 1));
+        assertFalse(p.percolates());
+        p.open(1, 1);
+        assertTrue(p.isOpen(1, 1));
+        assertTrue(p.isFull(1, 1));
+        assertTrue(p.percolates());
+    }
+
+    @Test
+    public void test2x2() throws Exception {
+        Percolation p = new Percolation(2);
+        assertFalse(p.percolates());
+        p.open(1, 1);
+        p.open(2, 2);
+        assertFalse(p.percolates());
+        p.open(1, 2);
         assertTrue(p.percolates());
     }
 }
