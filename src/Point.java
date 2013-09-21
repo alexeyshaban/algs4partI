@@ -44,15 +44,15 @@ public class Point implements Comparable<Point> {
 
     private int compare(int a, int b) {
         if (a < b) {
-	        return -1;
-	    }
-		if (a == b) {
-	        return 0;
-		}
+            return -1;
+        }
+        if (a == b) {
+            return 0;
+        }
         return 1;
     }
 
-	public double slopeTo(Point that) {
+    public double slopeTo(Point that) {
         if (y == that.y) {
             if (x == that.x) {
                 return Double.NEGATIVE_INFINITY;
